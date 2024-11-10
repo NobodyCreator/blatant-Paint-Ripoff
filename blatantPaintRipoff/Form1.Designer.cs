@@ -1,4 +1,6 @@
-﻿namespace blatantPaintRipoff
+﻿using System.Windows.Forms;
+
+namespace blatantPaintRipoff
 {
     partial class Form1
     {
@@ -7,10 +9,12 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
 
         protected override void Dispose(bool disposing)
         {
@@ -29,23 +33,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+
+            //
+            //tableLayoutPanel
+            //
+            this.tableLayoutPanel.ColumnCount = 3;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(800, 485);
+            this.tableLayoutPanel.TabIndex = 0;
+
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 426);
+            this.panel1.Size = new System.Drawing.Size(794, 430);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
             // colorButton
             // 
-            this.colorButton.Location = new System.Drawing.Point(12, 450);
+            this.colorButton.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            this.colorButton.Location = new System.Drawing.Point(3, 439);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(75, 23);
             this.colorButton.TabIndex = 1;
@@ -55,9 +82,10 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(93, 450);
+            this.clearButton.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            this.clearButton.Location = new System.Drawing.Point(268, 439);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 32);
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 2;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -65,7 +93,8 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(174, 450);
+            this.saveButton.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            this.saveButton.Location = new System.Drawing.Point(533, 439);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 3;
@@ -78,12 +107,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.colorButton);
-            this.Controls.Add(this.clearButton);
-            this.Controls.Add(this.saveButton);
+            this.ClientSize = new System.Drawing.Size(800, 485);
+            this.Controls.Add(this.tableLayoutPanel);
+            this.tableLayoutPanel.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel.SetColumnSpan(this.panel1, 3);
+            this.tableLayoutPanel.Controls.Add(this.colorButton, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.clearButton, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.saveButton, 2, 1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.WindowState = FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
