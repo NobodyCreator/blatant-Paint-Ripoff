@@ -59,6 +59,7 @@
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 32);
             this.clearButton.TabIndex = 2;
+            this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_click);
             // 
@@ -68,6 +69,7 @@
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 3;
+            this.saveButton.Text = "Save as PNG";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_click);
             // 

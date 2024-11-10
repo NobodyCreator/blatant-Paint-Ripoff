@@ -36,6 +36,16 @@ namespace blatantPaintRipoff
         private void colorButton_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
+
+            if (button.BackColor == Color.Transparent)
+            {
+                button.BackColor = Color.Black;
+            }
+            else
+            {
+                button.BackColor = Color.Transparent;
+            }
+
             paintManager.SetColor(button.BackColor);
         }
         private void clearButton_click(object sender, EventArgs e)
