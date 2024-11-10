@@ -22,10 +22,8 @@ namespace blatantPaintRipoff
             drawingPanel = panel;
             drawingBitmap = new Bitmap(panel.Width, panel.Height);
             graphics = Graphics.FromImage(drawingBitmap);
-            panel.BackgroundImage = drawingBitmap;
-            panel.MouseDown += Panel_MouseDown;
-            panel.MouseMove += Panel_MouseMove;
-            panel.MouseUp += Panel_MouseUp;
+            drawingPanel.BackgroundImage = drawingBitmap;
+            drawingPanel.BackgroundImageLayout = ImageLayout.None;
         }
 
         public void Panel_MouseDown(object sender, MouseEventArgs e)
