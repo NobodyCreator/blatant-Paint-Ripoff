@@ -17,6 +17,7 @@ namespace blatantPaintRipoff
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             paintManager = new PaintManager(panel1);
             panel1.Resize += new EventHandler(panel1_Resize);
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
