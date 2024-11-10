@@ -116,7 +116,7 @@ namespace blatantPaintRipoff
             this.tableLayoutPanel.Controls.Add(this.saveButton, 2, 1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+          //  this.WindowState = System.Windows.Forms.FormWindowState.Maximized; //makes it full screen - dont touch
             this.ResumeLayout(false);
 
         }

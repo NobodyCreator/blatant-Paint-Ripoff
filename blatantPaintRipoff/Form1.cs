@@ -18,6 +18,12 @@ namespace blatantPaintRipoff
         {
             InitializeComponent();
             paintManager = new PaintManager(panel1);
+            panel1.Resize += new EventHandler(panel1_Resize);
+        }
+
+        private void panel1_Resize(object sender, EventArgs e)
+        {
+            paintManager.Resize(panel1);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
