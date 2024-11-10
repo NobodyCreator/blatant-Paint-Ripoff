@@ -17,37 +17,46 @@ namespace blatantPaintRipoff
         private Bitmap drawingBitmap;
         private Graphics graphics;
         private Panel drawingPanel;
+        private Stack<Bitmap> undoStack;
+
+        public PaintManager(Panel panel) 
+        {
+            drawingPanel = panel;
+            undoStack = new Stack<Bitmap>();
+            InitializeBitmap();
+        }
 
         private void InitializeBitmap()
         {
             drawingBitmap = new Bitmap(drawingPanel.Width, drawingPanel.Height);
             graphics = Graphics.FromImage(drawingBitmap);
-            drawingPanel.BackgroundImage= drawingBitmap;
+            graphics.Clear(Color.White);
+            drawingPanel.BackgroundImage = drawingBitmap;
             drawingPanel.BackgroundImageLayout = ImageLayout.None;
-        }
-
-        public PaintManager(Panel panel) 
-        {
-            drawingPanel = panel;
-            InitializeBitmap();
         }
 
         public void Resize(Panel panel)
         {
-            Bitmap newBitmap = new Bitmap(panel.Width, panel.Height);
-            using (Graphics g = Graphics.FromImage(newBitmap))
+            if (panel.Width > 0 && panel.Height > 0)
             {
-                g.DrawImage(drawingBitmap, 0, 0);
+                Bitmap newBitmap = new Bitmap(panel.Width, panel.Height);
+                using (Graphics g = Graphics.FromImage(newBitmap))
+                {
+                    g.Clear(Color.White);
+                    g.DrawImage(drawingBitmap, 0, 0);
+                }
+                drawingBitmap = newBitmap;
+                graphics = Graphics.FromImage(drawingBitmap);
+                drawingPanel.BackgroundImage = drawingBitmap;
             }
-            drawingBitmap = newBitmap;
-            graphics = Graphics.FromImage(drawingBitmap);
-            drawingPanel.BackgroundImage = drawingBitmap;
         }
 
         public void Panel_MouseDown(object sender, MouseEventArgs e)
         {
             isDrawing = true;
             lastPoint = e.Location;
+
+            undoStack.Push((Bitmap)drawingBitmap.Clone());//undo moment
         }
         public void Panel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -81,6 +90,17 @@ namespace blatantPaintRipoff
         public void Save(string filePath)
         {
             drawingBitmap.Save(filePath);
+        }
+
+        public void Undo()
+        {
+            if (undoStack.Count > 0)
+            {
+                drawingBitmap = undoStack.Pop();
+                graphics = Graphics.FromImage(drawingBitmap);
+                drawingPanel.BackgroundImage = drawingBitmap;
+                drawingPanel.Invalidate();
+            }
         }
     }
 }

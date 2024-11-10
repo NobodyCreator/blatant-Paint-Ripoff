@@ -19,6 +19,15 @@ namespace blatantPaintRipoff
             InitializeComponent();
             paintManager = new PaintManager(panel1);
             panel1.Resize += new EventHandler(panel1_Resize);
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                paintManager.Undo();
+            }
         }
 
         private void panel1_Resize(object sender, EventArgs e)
@@ -57,6 +66,11 @@ namespace blatantPaintRipoff
         private void clearButton_click(object sender, EventArgs e)
         {
             paintManager.Clear();
+        }
+
+        private void undoButton_click(object sender, EventArgs e)
+        {
+            paintManager.Undo();
         }
 
         private void saveButton_click(Object sender, EventArgs e)
