@@ -21,6 +21,11 @@ namespace blatantPaintRipoff
             paintManager = new PaintManager(panel1);
             panel1.Resize += new EventHandler(panel1_Resize);
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+
+            //double buffering
+            typeof(Panel).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.SetProperty | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, panel1, new object[] { true });
+
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -29,6 +34,11 @@ namespace blatantPaintRipoff
             {
                 paintManager.Undo();
             }
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+           //no base class
         }
 
         private void panel1_Resize(object sender, EventArgs e)

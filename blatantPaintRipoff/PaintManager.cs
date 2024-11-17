@@ -68,6 +68,8 @@ namespace blatantPaintRipoff
                 }
                 drawingPanel.Invalidate();
                 lastPoint = e.Location;
+
+                drawingPanel.Invalidate(new Rectangle(lastPoint.X, lastPoint.Y, 2, 2));
             }
         }
         public void Panel_MouseUp(object sender, MouseEventArgs e)
