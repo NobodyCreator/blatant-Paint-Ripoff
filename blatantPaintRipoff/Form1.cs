@@ -53,16 +53,18 @@ namespace blatantPaintRipoff
         {
             Button button = (Button)sender;
 
-            if (button.BackColor == Color.Transparent)
+            using (ColorDialog colorDialog = new ColorDialog())
             {
-                button.BackColor = Color.Black;
-            }
-            else
-            {
-                button.BackColor = Color.Transparent;
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    button.BackColor = colorDialog.Color;
+
+                    paintManager.SetColor(colorDialog.Color);
+                }
             }
 
-            paintManager.SetColor(button.BackColor);
+
+                paintManager.SetColor(button.BackColor);
         }
         private void clearButton_click(object sender, EventArgs e)
         {
