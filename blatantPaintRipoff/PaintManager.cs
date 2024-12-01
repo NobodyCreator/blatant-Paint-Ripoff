@@ -89,7 +89,7 @@ namespace blatantPaintRipoff
             drawingPanel.Invalidate();
         }
 
-        public void Save(string filePath)
+        public void Save(string filePath, System.Drawing.Imaging.ImageFormat format)
         {
             drawingBitmap.Save(filePath);
         }

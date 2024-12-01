@@ -89,11 +89,29 @@ namespace blatantPaintRipoff
         private void saveButton_click(Object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "PNG Files|*.png";
+            saveFileDialog.Filter = "PNG Files|*.png|JPEG Files|*.jpg|BMP Files|*.bmp|GIF Files|*.gif";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            { 
             {
-                paintManager.Save(saveFileDialog.FileName); 
+                string fileExtension = System.IO.Path.GetExtension(saveFileDialog.FileName).ToLower();
+                    switch (fileExtension)
+                    {
+                        case ".jpg":
+                            paintManager.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            break;
+                        case ".bmp":
+                            paintManager.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                            break;
+                        case ".gif":
+                            paintManager.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
+                            break;
+                        case ".png":
+                        default:
+                            paintManager.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                            break;
+                    }
             }
+        }
         }
     }
 }
